@@ -22,8 +22,8 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # ---------------------------------------------------------------------------
 print(f"Loading {DATA_PATH} …")
 df = pd.read_csv(DATA_PATH)
-df["accept_time"] = pd.to_datetime(df["accept_time"])
-df["delivery_time"] = pd.to_datetime(df["delivery_time"])
+df["accept_time"] = pd.to_datetime("2023-" + df["accept_time"])
+df["delivery_time"] = pd.to_datetime("2023-" + df["delivery_time"])
 
 # ---------------------------------------------------------------------------
 # Transit time
