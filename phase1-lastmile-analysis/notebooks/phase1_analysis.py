@@ -38,9 +38,8 @@ df["transit_time_hours"] = (
 # ---------------------------------------------------------------------------
 hour = df["accept_time"].dt.hour
 df["time_bucket"] = "Non-Peak"
-df.loc[((hour >= 7) & (hour < 10)) | ((hour >= 16) & (hour < 19)), "time_bucket"] = (
-    "Peak"
-)
+is_peak = ((hour >= 7) & (hour < 10)) | ((hour >= 16) & (hour < 19))
+df.loc[is_peak, "time_bucket"] = "Peak"
 
 # ---------------------------------------------------------------------------
 # Aggregate: average transit time per city × courier × time_bucket
