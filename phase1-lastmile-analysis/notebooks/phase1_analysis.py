@@ -21,7 +21,9 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # Load & parse
 # ---------------------------------------------------------------------------
 print(f"Loading {DATA_PATH} …")
-df = pd.read_csv(DATA_PATH, parse_dates=["accept_time", "delivery_time"])
+df = pd.read_csv(DATA_PATH)
+df["accept_time"] = pd.to_datetime(df["accept_time"])
+df["delivery_time"] = pd.to_datetime(df["delivery_time"])
 
 # ---------------------------------------------------------------------------
 # Transit time
