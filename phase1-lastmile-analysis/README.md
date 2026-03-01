@@ -1,16 +1,82 @@
-# Phase 1 — Last-Mile Delivery Analysis
+# Phase 1 — Last-Mile Execution Analysis
 
-## Overview
+## Dataset Used
 
-Phase 1 focuses on last-mile delivery performance within the broader supply chain analytics platform. Last-mile delivery is typically the most expensive and operationally complex segment of the fulfilment process. This phase establishes the analytical foundation by ingesting delivery data, computing key performance indicators, and surfacing insights that drive operational improvements.
+**LaDe delivery_CQ dataset**
 
-## Objectives
+| Column | Description |
+|---|---|
+| `order_id` | Unique order identifier |
+| `region_id` | Region of delivery |
+| `city` | City of delivery |
+| `courier_id` | Courier handling the delivery |
+| `accept_time` | Timestamp when the courier accepted the order |
+| `delivery_time` | Timestamp when the delivery was completed |
+| GPS coordinates | Latitude and longitude of delivery |
+| `ds` | Date stamp |
 
-- Analyse last-mile delivery datasets to identify patterns in delivery time, cost, and failure rates.
-- Compute KPIs such as on-time delivery rate, average delivery duration, cost per delivery, and failed-delivery percentage.
-- Detect bottlenecks and regional performance variations across delivery routes and carriers.
-- Produce visualisations and summary reports that inform logistics decision-making.
-- Lay the groundwork for predictive modelling and route optimisation in later phases.
+**Dataset Grain:** One row represents one last-mile delivery execution event for one order handled by one courier.
+
+## Scope
+
+This dataset covers **only the last-mile delivery portion** of the supply chain. It does NOT include:
+
+- Order creation
+- Warehouse picking
+- Sorting
+- Inventory
+- Product data
+- Cold chain
+- SLA promise times
+
+Those will be added in later phases.
+
+## KPI Defined
+
+**Courier Performance** = Average last-mile transit time, calculated as:
+
+```
+delivery_time - accept_time
+```
+
+Measured in **hours**.
+
+### Comparison Rules
+
+- Couriers are compared **only within the same city**.
+- Performance is segmented by **time-of-day** to control for traffic bias.
+
+### Time Buckets
+
+| Bucket | Hours |
+|---|---|
+| Peak | 07:00–10:00 and 16:00–19:00 |
+| Non-Peak | All other hours |
+
+### Poor Performance Definition
+
+A courier is underperforming if their average transit time is **significantly higher** than peers in the same city and same time bucket.
+
+## Output Built
+
+- Transit time column
+- Peak vs Non-Peak classification
+- Average transit time per city and courier
+- Bottom 10% slowest couriers per city
+- Data exported for Power BI
+
+## Power BI Visuals
+
+- Average transit time by city
+- Courier comparison (Peak vs Non-Peak)
+- Bottom 10% highlight
+
+## What Phase 1 Demonstrates
+
+- Controlled KPI definition
+- Bias handling (geography + congestion)
+- Operational fairness logic
+- Real last-mile analytics
 
 ## Project Structure
 
@@ -22,22 +88,12 @@ phase1-lastmile-analysis/
 └── outputs/           # Generated reports, charts, and exported KPIs
 ```
 
-## Key Metrics
+## Planned Phases
 
-| Metric | Description |
+| Phase | Focus |
 |---|---|
-| On-Time Delivery Rate | Percentage of deliveries completed within the promised window |
-| Average Delivery Duration | Mean time from dispatch to delivery confirmation |
-| Cost per Delivery | Total last-mile cost divided by number of deliveries |
-| Failed Delivery Rate | Percentage of delivery attempts that were unsuccessful |
-| First-Attempt Success Rate | Deliveries completed on the first attempt without rescheduling |
-
-## Getting Started
-
-1. Place raw delivery data files in the `data/` directory.
-2. Open the notebooks in `notebooks/` to run exploratory and KPI analyses.
-3. Generated outputs (charts, CSV summaries, reports) will be saved to `outputs/`.
-
-## Relationship to Overall Project
-
-This phase is part of the **Large-Scale Supply Chain Analytics** platform. Insights produced here feed into downstream phases covering warehouse operations, transportation network optimisation, and end-to-end supply chain visibility.
+| **Phase 1** | Last-Mile Execution Analysis (current) |
+| **Phase 2** | Full Lifecycle Integration (DataCo dataset) |
+| **Phase 3** | Robotics & Automation Simulation |
+| **Phase 4** | Cold Chain Simulation |
+| **Phase 5** | Architecture Thinking |
