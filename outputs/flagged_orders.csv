@@ -1,0 +1,8 @@
+flagged_at,order_id,reason,delivery_status,late_delivery_risk,days_real,days_scheduled,order_region,product_name
+2026-07-04T17:37:19+00:00,75939,test run: exercising flag_late_shipment,Late delivery,1,5,4,South Asia,Smart watch 
+2026-07-04T17:43:41+00:00,75929,test run: exercising flag_late_shipment,Late delivery,1,5,2,Southeast Asia,Smart watch 
+2026-07-04T17:44:19+00:00,75929,test run: exercising flag_late_shipment,Late delivery,1,5,2,Southeast Asia,Smart watch 
+2026-07-04T18:20:52+00:00,5895,"6-day real vs 2-day scheduled gap (+4 days, 200% overrun). Cardio Equipment, Second Class, Central America. Earliest recorded late order in dataset — persistent structural issue. Home Office segment.",Late delivery,1,6,2,Central America,Nike Men's Free 5.0+ Running Shoe
+2026-07-04T18:21:21+00:00,55155,"6-day real vs 2-day scheduled gap (+4 days). Women's Apparel (Nike Dri-FIT), Second Class, Central America, 2017. Home Office segment — recurring pattern across this SKU/mode/region combo.",Late delivery,1,6,2,Central America,Nike Men's Dri-FIT Victory Golf Polo
+2026-07-04T18:21:51+00:00,58375,"6-day real vs 4-day scheduled gap (+2 days). Kids' Golf Clubs / Polar FT4, Standard Class, Central America, May 2017. Consumer segment — part of the 2017 spike (+7,875 late orders in 13 months).",Late delivery,1,6,4,Central America,Polar FT4 Heart Rate Monitor
+2026-07-04T18:22:23+00:00,56260,"6-day real vs 2-day scheduled gap (+4 days, 200% overrun). Cleats/Perfect Fitness, Second Class, Central America, Apr 2017. Home Office segment. Second Class is the dominant late-shipping mode in this region.",Late delivery,1,6,2,Central America,Perfect Fitness Perfect Rip Deck
