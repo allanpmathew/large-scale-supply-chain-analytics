@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+data/DataCoSupplyChainDataset.csv
+.DS_Store
+outputs/flagged_orders.csv
